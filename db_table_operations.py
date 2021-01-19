@@ -226,7 +226,6 @@ def get_db_url():
 		url = "postgres://postgres:test123@localhost:5432/bds"
 		return url
 	else:
-		db.bind(provider="postgres", dsn=DATABASE_URL)
 		return NEW_URL
 	if url is None:
 		print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
