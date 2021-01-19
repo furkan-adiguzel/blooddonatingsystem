@@ -51,13 +51,14 @@ def initialize(url):
             
         cursor.close()
 
-
+# DATABASE_URL = 'postgres://roanqhsatcqkrw:10c97d66b5bdb32b285af396b5cef5af3c4ea1adb9994c52ab01d17a65a820ef@ec2-3-234-109-123.compute-1.amazonaws.com:5432/daaaitntb4vqkm'  #os.getenv("DATABASE_URL")
 if __name__ == "__main__":
     NEW_URL = os.getenv("DATABASE_URL")
     if not NEW_URL:
         url = "postgres://postgres:test123@localhost:5432/bds"
         initialize(url)
     else:
+        db.bind(provider="postgres", dsn=DATABASE_URL)
         initialize(NEW_URL)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
