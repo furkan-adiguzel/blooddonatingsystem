@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+<h1>Add a new patient</h1>
+<br/>
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ error_statement }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<form class="form-signin" action="/add_patient" METHOD="POST">
+	<div class="row g-3 align-items-center">
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Patient ID" name="patientid" value="{{ patientid }}" 
+			required maxlength="11" minlength="11" pattern="([0-9]{11})">
+		</div>
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Name" name="name" value="{{ name }}" required>
+		</div>
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Surname" name="surname" value="{{ surname }}"  required>
+		</div>
+		<div class="col-auto">
+			<input type="tel" class="form-control" placeholder="Phone Number" name="phonenumber" value="{{ phonenumber }}"  required>
+		</div>
+		<div class="col-auto">
+			<input type="date" class="form-control"  placeholder="BirthDate" name="birthdate" value="{{ birthdate }}" required>
+		</div>
+		<div class="col-auto">
+			<select name="bloodtype" class="form-control" required>
+				<option class="dropdown-item" value="">{% if not error_statement %} Select a Blood Type {% endif %} 
+				{% if error_statement %} Your selection was: {% endif %} {{ bloodtype }} </option>
+				<option class="dropdown-item" value="(A+)">A RhD positive (A+)</option>
+				<option class="dropdown-item" value="(A-)">A RhD negative (A-)</option>
+				<option class="dropdown-item" value="(B+)">B RhD positive (B+)</option>
+				<option class="dropdown-item" value="(B-)">B RhD negative (B-)</option>
+				<option class="dropdown-item" value="(0+)">0 RhD positive (0+)</option>
+				<option class="dropdown-item" value="(0-)">0 RhD negative (0-)</option>
+				<option class="dropdown-item" value="(AB+)">AB RhD positive (AB+)</option>
+				<option class="dropdown-item" value="(AB-)">AB RhD negative (AB-)</option>
+			</select>
+		</div>
+	</div>
+	<br>
+	<div class="col-auto">
+		<textarea class="form-control" placeholder="Address" name="address"  >{{ address }}</textarea>
+	</div>
+	<br>
+	<input type="submit" value="Add Patient" class="btn btn-secondary">
+</form>
+<br/>
+
+
+
+
+{% endblock %}

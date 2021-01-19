@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+<h1>Add a new User</h1>
+<br/>
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ error_statement }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<form class="form-signin" action="/add_user" METHOD="POST">
+	<div class="row g-3 align-items-center">
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Email" name="email" value="{{ email }}"required>
+		</div>
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Username" name="username" value="{{ username }}" required>
+		</div>
+		<div class="col-auto">
+			<input type="tel" class="form-control" placeholder="Password" name="password" value="{{ password }}" required>
+		</div>
+		<div class="col-auto">
+			<input type="checkbox" id="vehicle1" name="is_admin" value="True">
+  			<label for="vehicle1">This user will have admin rights.</label><br>
+		</div>
+		<div class="col-auto">
+			<input type="submit" value="Add User" class="btn btn-secondary">
+		</div>
+	</div>
+</form>
+<br/>
+
+
+
+
+{% endblock %}

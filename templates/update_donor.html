@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+<h1>Update donor</h1>
+<br/>
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ error_statement }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<form class="form-signin" action="/update_donor/{{donor_to_update[0]}}" METHOD="POST">
+	<div class="row g-3 align-items-center">
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Donor ID" name="donorid" value="{{ donor_to_update[0] }}" 
+			required maxlength="11" minlength="11" pattern="([0-9]{11})">
+		</div>
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Name" name="name" value="{{ donor_to_update[1] }}" required>
+		</div>
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Surname" name="surname" value="{{ donor_to_update[2] }}"  required>
+		</div>
+		<div class="col-auto">
+			<input type="tel" class="form-control" placeholder="Phone Number" name="phonenumber" value="{{ donor_to_update[3] }}"  required>
+		</div>
+		<div class="col-auto">
+			<input type="date" class="form-control"  placeholder="BirthDate" name="birthdate" value="{{ donor_to_update[4] }}" required>
+		</div>
+		<div class="col-auto">
+			<select name="bloodtype" class="form-control" required>
+				<option class="dropdown-item" value=""> Current Blood Type: {{ donor_to_update[5] }} </option>
+				<option class="dropdown-item" value="(A+)">A RhD positive (A+)</option>
+				<option class="dropdown-item" value="(A-)">A RhD negative (A-)</option>
+				<option class="dropdown-item" value="(B+)">B RhD positive (B+)</option>
+				<option class="dropdown-item" value="(B-)">B RhD negative (B-)</option>
+				<option class="dropdown-item" value="(0+)">0 RhD positive (0+)</option>
+				<option class="dropdown-item" value="(0-)">0 RhD negative (0-)</option>
+				<option class="dropdown-item" value="(AB+)">AB RhD positive (AB+)</option>
+				<option class="dropdown-item" value="(AB-)">AB RhD negative (AB-)</option>
+			</select>
+		</div>
+	</div>
+	<br>
+	<div class="col-auto">
+		<textarea class="form-control" placeholder="Address" name="address"  >{{ donor_to_update[6] }}</textarea>
+	</div>
+	<br>
+	<input type="submit" value="Update Donor" class="btn btn-secondary">
+	<a type="submit" value="Delete Donor" href="/delete_donor/{{donor_to_update[0]}}" class="btn btn-danger">Delete Donor </a>
+</form>
+<br/>
+
+
+
+
+{% endblock %}

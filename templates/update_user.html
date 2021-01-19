@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+<h1>Add a new User</h1>
+<br/>
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ error_statement }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<form class="form-signin" action="/update_user/{{ user_to_update[0] }}" METHOD="POST">
+	<div class="row g-3 align-items-center">
+		<div class="col-auto"> 
+			<h5 type="text" placeholder="Email" name="email"><strong> Email: </strong> {{ user_to_update[1] }} </a>
+		</div>
+		<div class="col-auto">
+			<h5 type="text" placeholder="Username" name="username"><strong> Username: </strong> {{ user_to_update[2] }} </a>
+		</div>
+	</div>
+	<div class="row g-3 align-items-center">
+		{% if not user_to_update[4] %}
+		<div class="col-auto">
+			<input type="checkbox" id="vehicle1" name="is_admin" value="True">
+			<label for="vehicle1">This user will have admin rights.</label><br>
+		</div>
+		{% endif %}
+		{% if user_to_update[4] %}
+		<div class="col-auto">
+			<input type="checkbox" id="vehicle1" name="is_admin" value="True" checked>
+			<label for="vehicle1">This user will have admin rights.</label><br>
+		</div>
+		{% endif %}
+		<div class="col-auto">
+			<input type="submit" value="Update User" class="btn btn-secondary">
+		</div>
+	</div>
+</form>
+<br/>
+
+
+
+
+{% endblock %}

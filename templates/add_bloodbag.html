@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+<h1>Add a new bloodbag</h1>
+<br/>
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ error_statement }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<form class="form-signin" action="/add_bloodbag" METHOD="POST">
+	<div class="row g-3 align-items-center">
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Donor ID" name="donorid" value="{{ donorid }}" 
+			required maxlength="11" minlength="11" pattern="([0-9]{11})">
+		</div>
+		<div class="col-auto">
+			<input type="text" class="form-control" placeholder="Patient ID" name="patientid" value="{{ patientid }}" 
+			maxlength="11" minlength="11" pattern="([0-9]{11})">
+		</div>
+		<div class="col-auto">
+			<input type="submit" value="Add Bloodbag" class="btn btn-secondary">
+		</div>
+	</div>
+	<br>
+	
+</form>
+<br/>
+
+
+
+
+{% endblock %}
